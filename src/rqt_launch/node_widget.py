@@ -35,7 +35,7 @@
 import os
 
 from python_qt_binding import loadUi
-from python_qt_binding.QtGui import QIcon
+from python_qt_binding.QtGui import QIcon, QPixmap
 from python_qt_binding.QtWidgets import QLineEdit, QWidget
 import rospy
 
@@ -81,9 +81,12 @@ class NodeWidget(QWidget):
         self._label_pkg_name.setText(self._launch_config.package)
         self._label_name_executable.setText(self._launch_config.type)
 
-        self._icon_node_start = QIcon.fromTheme('media-playback-start')
-        self._icon_node_stop = QIcon.fromTheme('media-playback-stop')
-        self._icon_respawn_toggle = QIcon.fromTheme('view-refresh')
+        self._icon_node_start = QIcon.fromTheme('media-playback-start',QIcon(QPixmap(os.path.join(self._rospack.get_path('rqt_gui'),
+                               'resource', 'icons/media-playback-start.png'))))
+        self._icon_node_stop = QIcon.fromTheme('media-playback-stop',QIcon(QPixmap(os.path.join(self._rospack.get_path('rqt_gui'),
+                               'resource', 'icons/media-playback-stop.png'))))
+        self._icon_respawn_toggle = QIcon.fromTheme('view-refresh',QIcon(QPixmap(os.path.join(self._rospack.get_path('rqt_gui'),
+                               'resource', 'icons/view-refresh.png'))))
 
         self._pushbutton_start_stop_node.setIcon(self._icon_node_start)
         self._respawn_toggle.setIcon(self._icon_respawn_toggle)
